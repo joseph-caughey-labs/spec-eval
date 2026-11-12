@@ -1,0 +1,45 @@
+[project]
+name = "spec-eval"
+version = "0.1.0"
+description = "Grade LLM output against a written spec: deterministic checks first, a model judge only where judgment is needed."
+readme = "README.md"
+license = "MIT"
+authors = [{ name = "Joseph Caughey" }]
+requires-python = ">=3.11"
+dependencies = []
+keywords = ["llm", "evaluation", "testing", "llm-as-judge"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Topic :: Software Development :: Testing",
+    "Typing :: Typed",
+]
+
+[project.optional-dependencies]
+anthropic = ["anthropic>=0.80"]
+
+[project.scripts]
+spec-eval = "spec_eval.cli:main"
+
+[project.urls]
+Repository = "https://github.com/joseph-caughey-labs/spec-eval"
+
+[dependency-groups]
+dev = ["pytest>=8", "mypy>=1.10", "ruff>=0.6"]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "SIM", "RUF"]
+
+[tool.mypy]
+strict = true
+files = ["src", "tests"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
