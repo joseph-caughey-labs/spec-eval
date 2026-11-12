@@ -87,6 +87,10 @@ DEFAULT_MODEL = "claude-opus-5-5"
 FALLBACK_BETA = "server-side-fallback-2026-07-01"
 
 
+def anthropic_judge_name(model: str, effort: str) -> str:
+    return f"anthropic:{model}:{effort}"
+
+
 class AnthropicJudge:
     """Grades with Claude, returning JSON constrained to VERDICT_SCHEMA.
 
@@ -115,7 +119,7 @@ class AnthropicJudge:
 
     @property
     def name(self) -> str:
-        return f"anthropic:{self.model}:{self.effort}"
+        return anthropic_judge_name(self.model, self.effort)
 
     def grade(self, rubric: str, case: Case) -> Verdict:
         import anthropic
@@ -150,6 +154,20 @@ class AnthropicJudge:
         if text is None:
             raise JudgeError("the response contained no verdict")
         return parse_verdict(text)
+
+
+class OfflineJudge:
+    """Stands in for a real judge when every verdict must come from the cache."""
+
+    def __init__(self, name: str) -> None:
+        self._name = name
+
+    @property
+    def name(self) -> str:
+        return self._name
+
+    def grade(self, rubric: str, case: Case) -> Verdict:
+        raise JudgeError(f"no cached verdict for case '{case.id}' (running offline)")
 
 
 class CachedJudge:

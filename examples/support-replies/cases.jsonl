@@ -1,0 +1,4 @@
+{"id": "on-time-update", "input": {"order_id": "A-1042", "new_eta": "May 14-16"}, "output": "Hi Sam, thanks for your patience. Order A-1042 left our warehouse this morning and is now expected between May 14 and May 16. You'll get a tracking email as soon as the carrier scans it."}
+{"id": "promises-refund", "input": {"order_id": "A-1043", "new_eta": "May 20"}, "output": "Sorry about the wait on order A-1043. It should arrive by May 20, and we'll issue a refund for the shipping cost today."}
+{"id": "missing-order-id", "input": {"order_id": "A-1044", "new_eta": "May 18"}, "output": "Hi Priya, your order is running a little late but is now due on May 18. Thanks for bearing with us."}
+{"id": "internal-link", "input": {"order_id": "A-1045", "new_eta": "May 15"}, "output": "Order A-1045 is due May 15. Status: https://admin.internal/orders/A-1045"}

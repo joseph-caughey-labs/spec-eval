@@ -1,0 +1,40 @@
+# Replies drafted by a support assistant for delayed-order emails.
+name = "support-replies"
+
+# Every reply must pass before this is allowed to ship.
+pass_rate = 1.0
+
+[[criteria]]
+id = "names-the-order"
+kind = "echoes_input"
+field = "order_id"
+
+[[criteria]]
+id = "no-refund-promise"
+kind = "not_regex"
+# Only a human agent can approve a refund.
+pattern = "(?i)\\b(we will|we'll|i will|i'll)\\s+(issue|process|send)\\s+(a|your)\\s+refund"
+
+[[criteria]]
+id = "no-internal-links"
+kind = "not_contains"
+value = "admin.internal"
+
+[[criteria]]
+id = "fits-in-preview"
+kind = "max_chars"
+value = 700
+
+[[criteria]]
+id = "gives-a-date"
+kind = "judge"
+rubric = """
+The reply tells the customer when to expect the order, either as a date or a \
+date range taken from the input. A vague answer such as "soon" does not count."""
+
+[[criteria]]
+id = "no-blame"
+kind = "judge"
+rubric = """
+The reply does not suggest the delay is the customer's fault and does not \
+blame a named carrier or partner."""
