@@ -15,7 +15,7 @@ classifiers = [
 ]
 
 [project.optional-dependencies]
-anthropic = ["anthropic>=0.80"]
+anthropic = ["anthropic>=2.8"]
 
 [project.scripts]
 spec-eval = "spec_eval.cli:main"

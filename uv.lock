@@ -760,7 +760,7 @@ dev = [
 ]
 
 [package.metadata]
-requires-dist = [{ name = "anthropic", marker = "extra == 'anthropic'", specifier = ">=0.80" }]
+requires-dist = [{ name = "anthropic", marker = "extra == 'anthropic'", specifier = ">=2.8" }]
 provides-extras = ["anthropic"]
 
 [package.metadata.requires-dev]
